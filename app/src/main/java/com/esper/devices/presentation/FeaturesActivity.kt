@@ -20,15 +20,26 @@ class FeaturesActivity : AppCompatActivity(), OptionsRecyclerViewAdapter.OptionS
         super.onCreate(savedInstanceState)
         featuresViewBinder = ActivityFeaturesBinding.inflate(layoutInflater)
         setContentView(featuresViewBinder.root)
-        featuresViewModel = ViewModelProvider(this).get(FeatureViewModel::class.java)
+        // setup features view model
+        initFeaturesViewModel()
+        // setup data observers
+        setupDataObservers()
+    }
 
-        // init features recycler view
+    private fun setupDataObservers() {
+        // Set recycler view to observe on features list
         val featuresRecyclerView = featuresViewBinder.featuresRecyclerView
         featuresRecyclerView.layoutManager = LinearLayoutManager(this)
         val featuresRecyclerViewAdapter = FeaturesRecyclerViewAdapter(this)
-        featuresRecyclerViewAdapter.mFeatures = featuresViewModel.mFeatures.values.toList()
-        featuresRecyclerViewAdapter.notifyDataSetChanged()
+        featuresViewModel.mFeatures.observe(this, {
+            featuresRecyclerViewAdapter.mFeatures = it.values.toList()
+            featuresRecyclerViewAdapter.notifyDataSetChanged()
+        })
         featuresRecyclerView.adapter = featuresRecyclerViewAdapter
+    }
+
+    private fun initFeaturesViewModel() {
+        featuresViewModel = ViewModelProvider(this).get(FeatureViewModel::class.java)
     }
 
     private fun logEvent(logString: String) {
@@ -39,9 +50,5 @@ class FeaturesActivity : AppCompatActivity(), OptionsRecyclerViewAdapter.OptionS
     override fun onOptionSelectedListener(featureOption: FeatureOption, previousSelection: FeatureOption) {
         featuresViewModel.updateListFromSelection(featureOption, previousSelection)
         logEvent("Selected $featureOption. Previous selection was $previousSelection")
-        (featuresViewBinder.featuresRecyclerView.adapter
-                as FeaturesRecyclerViewAdapter).mFeatures = featuresViewModel.mFeatures.values.toList()
-        (featuresViewBinder.featuresRecyclerView.adapter
-                as FeaturesRecyclerViewAdapter).notifyDataSetChanged()
     }
 }

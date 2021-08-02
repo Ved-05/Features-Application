@@ -11,7 +11,7 @@ import com.esper.devices.presentation.data.Feature
 class FeaturesRecyclerViewAdapter(
     private val mOptionSelectedListener: OptionsRecyclerViewAdapter.OptionSelectedListener
 ) : RecyclerView.Adapter<FeaturesRecyclerViewAdapter.FeaturesViewHolder>() {
-    internal lateinit var mFeatures: List<Feature>
+    internal var mFeatures: List<Feature> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeaturesViewHolder {
         return FeaturesViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.view_feature, parent, false))
