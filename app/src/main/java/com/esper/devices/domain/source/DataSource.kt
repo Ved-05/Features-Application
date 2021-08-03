@@ -1,7 +1,8 @@
 package com.esper.devices.domain.source
 
-import com.esper.devices.domain.dto.EsperServiceResponse
+import android.content.Context
+import com.esper.devices.domain.source.remote.dto.EsperServiceResponse
 
 interface DataSource {
-    suspend fun getDB() : EsperServiceResponse
+    suspend fun getDB(context: Context) : EsperServiceResponse
 }

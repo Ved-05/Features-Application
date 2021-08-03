@@ -1,10 +1,12 @@
 package com.esper.devices.presentation.data
 
+import java.io.Serializable
+
 data class Option(
     val optionId: Int,
     val name: String,
     val iconUrl: String
-) {
+) : Serializable {
     var isSelected: Boolean = false
     var isAllowed: Boolean = true
 

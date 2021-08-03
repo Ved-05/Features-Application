@@ -1,11 +1,11 @@
-package com.esper.devices.domain.source.remote
+package com.esper.devices.domain.source.local
 
 import android.content.Context
 import com.esper.devices.domain.source.DataSource
 import com.esper.devices.domain.source.remote.dto.EsperServiceResponse
 
-class RemoteSource : DataSource {
+class LocalSource : DataSource {
     override suspend fun getDB(context: Context): EsperServiceResponse {
-        return RetrofitBuilder.getService(context).listDB()
+        return EsperServiceResponse(emptyList(), emptyList())
     }
 }

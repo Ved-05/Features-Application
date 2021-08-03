@@ -1,4 +1,4 @@
-package com.esper.devices.domain.dto
+package com.esper.devices.domain.source.remote.dto
 
 data class OptionDTO(
     val name: String,

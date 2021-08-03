@@ -1,6 +1,6 @@
 package com.esper.devices.domain.source.remote
 
-import com.esper.devices.domain.dto.EsperServiceResponse
+import com.esper.devices.domain.source.remote.dto.EsperServiceResponse
 import retrofit2.http.GET
 
 /**

@@ -1,10 +1,12 @@
 package com.esper.devices.presentation.data
 
+import java.io.Serializable
+
 data class Feature(
     val featureId: Int,
     val name: String,
     val options: Map<Int, Option>
-) {
+): Serializable {
     override fun hashCode(): Int {
         return featureId
     }

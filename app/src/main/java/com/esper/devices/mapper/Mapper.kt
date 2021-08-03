@@ -1,8 +1,8 @@
 package com.esper.devices.mapper
 
-import com.esper.devices.domain.dto.ExclusionDTO
-import com.esper.devices.domain.dto.FeatureDTO
-import com.esper.devices.domain.dto.OptionDTO
+import com.esper.devices.domain.source.remote.dto.ExclusionDTO
+import com.esper.devices.domain.source.remote.dto.FeatureDTO
+import com.esper.devices.domain.source.remote.dto.OptionDTO
 import com.esper.devices.presentation.data.Feature
 import com.esper.devices.presentation.data.FeatureOption
 import com.esper.devices.presentation.data.Option
